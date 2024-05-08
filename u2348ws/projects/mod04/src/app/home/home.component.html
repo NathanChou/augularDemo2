@@ -1,0 +1,53 @@
+<style>
+    .full-width {
+        width: 100%;
+    }
+</style>
+<h1>會員註冊</h1>
+<form #f1="ngForm">
+    <mat-form-field class="full-width">
+        <mat-label>會員姓名</mat-label>
+        <input type="text" matInput placeholder="會員姓名" [(ngModel)]="member.userName" #userName="ngModel" name="userName" required>
+        <mat-error *ngIf="userName.errors?.['required']">
+            會員姓名<strong>必須輸入</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>電子郵件</mat-label>
+        <input type="text" matInput placeholder="電子郵件" [(ngModel)]="member.email" #email="ngModel" name="email" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+        <mat-error *ngIf="email.errors?.['required']">
+        電子郵件<strong>必須輸入</strong>
+        </mat-error>
+        <mat-error *ngIf="email.errors?.['pattern']">
+        格式必須<strong>符合 email 格式</strong>。例如:mary@email.com
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>性別</mat-label>
+        <mat-select placeholder="姓別" [(ngModel)]="member.gender" #gen="ngModel">
+            <mat-option value="">--請選擇性別--</mat-option>
+            <mat-option *ngFor="let g of gender" [value]="g.value">
+                {{ g.display }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>生日</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="生日" name="birthday" [(ngModel)]="member.brithday" #brithday="ngModel">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="multi-year" [startAt]="member.brithday"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>本次選修課程</mat-label>
+        <mat-select required [(ngModel)]="member.subjectID" #subjectID="ngModel" placeholder="本次選修課程">
+            <mat-option value="">--請選擇課程--</mat-option>
+            <mat-optgroup *ngFor="let dept of deptSubject" [label]="dept.deptName">
+                <mat-option *ngFor="let subject of dept.subjects" [value]="subject.id">{{ subject.name }}</mat-option>
+            </mat-optgroup>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" (click)="Save(f1)">Submit</button>
+    <button mat-raised-button class="btn btn-info" type="button" (click)="AddMember(f1)">Add New</button>
+</form>

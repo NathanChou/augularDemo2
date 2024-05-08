@@ -1,0 +1,227 @@
+<style>
+    .stepContent {
+        width: 300px;
+        height: 200px
+    }
+</style>
+<!-- <mat-stepper>
+    <mat-step label="Step1 Label">
+        Step1 Content
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step label="Step2 Label">
+        Step2 Content
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step label="完成 Label">
+        完成 Content
+    </mat-step>
+</mat-stepper> -->
+<!-- <mat-stepper>
+    <mat-step>
+        <ng-template matStepLabel >          
+            步驟1
+        </ng-template>
+        Step1 Content
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step  >
+        <ng-template matStepLabel>  
+            步驟2
+        </ng-template>
+        Step2 Content
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step >
+        <ng-template matStepLabel>          
+            完成
+        </ng-template>
+        完成 Content
+    </mat-step>
+</mat-stepper> -->
+<!-- <mat-stepper>
+    <ng-template matStepperIcon="home">
+        <mat-icon>home</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="star">
+        <mat-icon>star_border</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="pan">
+        <mat-icon>pan_tool</mat-icon>
+    </ng-template>
+    <mat-step state="home">
+        <ng-template matStepLabel >          
+            步驟1
+        </ng-template>
+        Step1 Content
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step state="star" >
+        <ng-template matStepLabel>  
+            步驟2
+        </ng-template>
+        Step2 Content
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step state="pan" >
+        <ng-template matStepLabel>          
+            完成
+        </ng-template>
+        完成 Content
+    </mat-step>
+</mat-stepper> -->
+    <!-- <mat-stepper  labelPosition="bottom"> -->
+<!-- <mat-stepper  headerPosition="bottom"> -->
+    <!-- <mat-stepper orientation="vertical">
+    <ng-template matStepperIcon="home">
+        <mat-icon>home</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="star">
+        <mat-icon>star_border</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="pan">
+        <mat-icon>pan_tool</mat-icon>
+    </ng-template>
+    <mat-step state="home">
+        <ng-template matStepLabel >          
+            步驟1
+        </ng-template>
+        Step1 Content
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step state="star" >
+        <ng-template matStepLabel>  
+            步驟2
+        </ng-template>
+        Step2 Content
+        <button mat-button matStepperPrevious>上一步</button>
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step state="pan" >
+        <ng-template matStepLabel>          
+            完成
+        </ng-template>
+        完成 Content
+    </mat-step>
+</mat-stepper> -->
+<!-- <mat-stepper linear="true" orientation="vertical" >
+    <mat-step completed="false" >
+        <ng-template matStepLabel >          
+            步驟1            
+        </ng-template>
+        Step1 Content<br/>
+        <label  >step1 此步完成</label>
+        <input type="checkbox" #chk1 (change)="SetComplete(chk1.checked)"> <br/>
+        <label  >step1 已讀不改</label>
+        <input type="checkbox" #chk2 (change)="SetEditable(chk2.checked)"> <br/>
+        <button mat-button matStepperNext >下一步</button>
+    </mat-step>
+    <mat-step  completed="false">
+        <ng-template matStepLabel>  
+            步驟2
+        </ng-template>
+        Step2 Content<br/>
+        <label  >step2 此步完成</label>
+        <input type="checkbox" #chk1 (change)="SetComplete(chk1.checked)"> <br/>
+        <label  >step2 已讀不改</label>
+        <input type="checkbox" #chk2 (change)="SetEditable(chk2.checked)"> <br/>
+        <button mat-button matStepperPrevious >上一步</button>
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step  completed="false">
+        <ng-template matStepLabel>          
+            完成
+        </ng-template>
+        完成 Content
+    </mat-step>
+</mat-stepper> -->
+<!-- <mat-stepper linear orientation="vertical" >
+    <mat-step label="Hello">
+        <div class="stepContent">
+            Hello
+        </div>
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>檢視合約</ng-template>
+        <div class="stepContent">
+            合約~~
+        </div>
+        <mat-checkbox #isOK >已經讀過合約內容</mat-checkbox>
+        <div>
+            <button mat-button matStepperPrevious>不同意</button>
+            <button mat-button matStepperNext>同意</button>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="contractForm" >
+        <ng-template matStepLabel>簽名</ng-template>
+        <div class="stepContent">
+            <form [formGroup]="contractForm">
+                <mat-form-field>
+                    <input matInput required formControlName="userName" placeholder="請簽名">
+                    <mat-error>
+                        必須簽署您的名字合約方可成立!!
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </div>
+        <div>
+            <button mat-button matStepperPrevious>上一步</button>
+            <button mat-button matStepperNext  >完成</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>完成</ng-template>
+        <div class="stepContent">
+            您已同意此合約，合約簽署者: {{ contractForm.get("userName")?.value }}
+            合約成立~~
+        </div>
+        <div>         
+            <button mat-button (click)="stepper.reset();">從頭來過</button>
+        </div>
+    </mat-step>
+</mat-stepper> -->
+
+<!-- <mat-stepper linear orientation="vertical" >
+    <mat-step label="Hello">
+        <div class="stepContent">
+            Hello
+        </div>
+        <button mat-button matStepperNext>下一步</button>
+    </mat-step>
+    <mat-step [hasError]="!isChecked.checked" errorMessage="必須完成閱讀合約!!">
+        <ng-template matStepLabel>檢視合約</ng-template>
+        <div class="stepContent">
+            合約~~
+        </div>
+        <mat-checkbox #isChecked>已經讀過合約內容</mat-checkbox>
+        <div> 
+            <button mat-button matStepperPrevious>不同意</button>
+            <button mat-button matStepperNext>同意</button>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="contractForm" errorMessage="必須簽署您的名字及留下手機號碼，合約方可成立!!" >
+        <ng-template matStepLabel>簽名</ng-template>
+        <div class="stepContent">
+            <form [formGroup]="contractForm">
+                <mat-form-field>
+                    <input matInput required formControlName="userName" placeholder="請簽名">
+                </mat-form-field>          
+            </form>
+        </div>
+        <div>
+            <button mat-button matStepperPrevious>上一步</button>
+            <button mat-button matStepperNext  >完成</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>完成</ng-template>
+        <div class="stepContent">
+            您已同意此合約，合約簽署者: {{ contractForm.get("userName")?.value }}
+            合約成立~~
+        </div>
+        <div>         
+            <button mat-button (click)="stepper.reset();">從頭來過</button>
+        </div>
+    </mat-step>
+</mat-stepper> -->

@@ -1,0 +1,21 @@
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>UserName</label>
+        <input type="text" formControlName="userName">
+    </div>
+    <div>
+        <label>password</label>
+        <input type="text" formControlName="password">
+        <button (click)="setPassword()" >setPassword</button>
+
+    </div>
+    <div>
+        <label>phone</label>
+        <input type="text" formControlName="phone">
+    </div>
+    <button (click)="usePatchValue()" >patchValue</button>
+    <button (click)="getData()">Get Data</button>
+    <button >Submit</button>
+</form>
+
+{{memberForm.value | json }}

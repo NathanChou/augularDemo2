@@ -1,0 +1,37 @@
+<div>
+    <h3>使用 select matNativeControl</h3>
+
+    <mat-form-field appearance="fill">
+        <mat-label>手機喜好廠牌</mat-label>
+        <select matNativeControl required [(ngModel)]="selected">
+            <option value="0">請選擇廠商</option>
+            <option *ngFor="let m of Manufacturer; let i =index " [ngValue]="i+1">{{m}}</option>
+        </select>
+    </mat-form-field>
+</div>
+
+<div>
+    <h3>使用 mat-select</h3>
+    <mat-form-field appearance="fill">
+        <mat-label>手機喜好廠牌</mat-label>
+        <mat-select required [(ngModel)]="selected">
+            <mat-option value="0">請選擇廠商</mat-option>
+            <mat-option *ngFor="let m of Manufacturer; let i =index" [value]="i+1">{{m}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+你選的是: {{selected}}
+
+<div>
+    <h3>使用 mat-select</h3>
+    <mat-form-field appearance="fill">
+        <mat-label>課程選取</mat-label>
+        <mat-select required [(ngModel)]="selectSubject">
+            <mat-option value="">請選擇課程</mat-option>
+            <mat-optgroup *ngFor="let dept of deptSubject" [label]="dept.deptName">
+                <mat-option *ngFor="let subject of dept.subjects;" [value]="subject.id">{{subject.name}}</mat-option>
+            </mat-optgroup>
+        </mat-select>
+    </mat-form-field>
+</div>
+你選的是: {{selectSubject}}

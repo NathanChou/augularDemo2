@@ -1,0 +1,97 @@
+<style>
+    .full-width {
+        width: 100%;
+    }
+
+    mat-form-field {
+        margin: 8px;
+    }
+
+    .inArray {
+        margin: 1px;
+    }
+
+    [matSuffix] {
+        margin-right: 20px;
+    }
+    input.ng-invalid {
+        color: red!important;
+    }
+
+    input.ng-dirty.ng-valid {
+        color: green!important;
+    }
+
+
+</style>
+<form [formGroup]="memberForm">
+    <mat-slide-toggle formControlName="enabled" color="primary">帳號啟用</mat-slide-toggle>
+    <mat-form-field class="full-width">
+        <input matInput type="text" formControlName="userName" placeholder="請輸入使用者帳號">
+        <mat-error>
+            {{showErrorMessage('userName', '使用者帳號')}}
+        </mat-error>
+
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput formControlName="password" [type]="pwdType" placeholder="請輸入密碼">
+        <mat-icon matSuffix (click)="SeePassword()">{{showPWDIcon}}</mat-icon>
+        <mat-hint>長度必須超過 8 個字，必須包含數字與字母</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput [type]="pwdType" formControlName="confirmPassword" placeholder="請確認密碼">
+        <mat-icon matSuffix (click)="SeePassword()">{{showPWDIcon}}</mat-icon>
+        <mat-hint>再輸入一次密碼，確認您記住了所設定密碼</mat-hint>
+        <mat-error>
+            {{showErrorMessage('confirmPassword', '確認密碼')}}  
+      </mat-error>
+    
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="請輸入手機號碼" formControlName="phone">
+        <mat-hint>例如:093812345678</mat-hint>
+        <mat-error>
+            {{showErrorMessage('phone', '請輸入手機號碼')}}  
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="請輸入email" formControlName="email">
+        <mat-hint>例如:mary@yourcompany.com</mat-hint>
+        <mat-error>
+            {{showErrorMessage('email', '必須符合電子郵件格式，如: mary@yourcompany.com ')}}  
+        </mat-error>        
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput [matDatepicker]="picker" placeholder="生日" formControlName="birthday">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+    </mat-form-field>
+    <ng-container formArrayName="subjects" *ngIf="memberForm.get('subjects')">
+        <button mat-button (click)="AddSubject()" [disabled]="subjects.invalid">
+            <mat-icon>note_add</mat-icon> 新增關注項目
+        </button>
+        <ol>
+            <li *ngFor="let subject of subjects?.controls; let i=index">
+                <mat-form-field style="width:80%">
+                    <mat-select [formControlName]="i" placeholder="請輸入感興趣的課程">
+                        <mat-option value="">---請選擇課程---</mat-option>
+                        <mat-optgroup *ngFor="let dept of deptSubject" [label]="dept.deptName">
+                            <mat-option *ngFor="let subject of dept.subjects" [value]="subject.id">{{subject.name}}
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                    <mat-icon matSuffix (click)="deleteSubject(i)">delete_forever</mat-icon>
+                </mat-form-field>
+            </li>
+        </ol>
+    </ng-container>
+
+    <button mat-raised-button color="primary" (click)="AddNew()"><mat-icon>fiber_new</mat-icon>新增</button>
+    <button mat-raised-button color="primary" (click)="Saved()"
+        [disabled]="memberForm.invalid"><mat-icon>save</mat-icon>存檔</button>
+</form>
+<div> {{memberForm.status }}</div>
+<div>{{ user | json}}</div>
+<div> {{ memberForm.value | json}}
+</div>

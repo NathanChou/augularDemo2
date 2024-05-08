@@ -1,0 +1,62 @@
+<style>
+
+    .cdk-header-row {
+        background-color: lightskyblue;
+    }
+    .desc {
+        background-color: #3f51b5;
+        color: white;
+    }
+    .cdk-row:nth-child(2n) {
+        background-color: lightskyblue;
+      
+    }
+    .cdk-column-size {
+        text-align:right;
+    }
+</style>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]" >
+</mat-paginator>
+<button mat-button  (click)="exporter.exportTable('csv')">Export to csv</button>
+<button mat-button  (click)="exporter.exportTable('xlsx')">Export to xlsx</button>
+
+
+<mat-table [dataSource]="roomDataSource" matSort matTableExporter #exporter="matTableExporter" >
+    <ng-container matColumnDef="id" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header="id" > # </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="name"> 會議室名稱 </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            {{row.name}}
+        </mat-cell>
+        
+    </ng-container>
+    <ng-container matColumnDef="size">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="size"> 座位 </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.size}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="projector">
+        <mat-header-cell *matHeaderCellDef > 投影機 </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            {{row.projector}}
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="tv">
+        <mat-header-cell *matHeaderCellDef > 電視 </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            {{row.tv}}
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+        <mat-header-cell  *matHeaderCellDef > 電視規格皆是60吋以上的數位電視，投影機解析度:1920*1080 </mat-header-cell>
+        <mat-footer-cell   *matFooterCellDef>座位總數(可視訊同步):{{getTotalSize()}}</mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displaySequence"></mat-header-row>
+    <mat-header-row class="desc" *matHeaderRowDef="['description']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displaySequence" (click)="RowClick(row)" ></mat-row>
+    <mat-footer-row class="desc" *matFooterRowDef="['description']"></mat-footer-row>
+</mat-table>
+

@@ -1,0 +1,52 @@
+<style>
+
+    .cdk-header-row {
+        background-color: lightskyblue;
+    }
+    .desc {
+        background-color: #3f51b5;
+        color: white;
+    }
+    .cdk-row:nth-child(2n) {
+        background-color: lightskyblue;
+      
+    }
+    .cdk-column-size {
+        text-align:right;
+    }
+</style>
+
+<table mat-table [dataSource]="roomDataSource">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef># </th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>會議室名稱</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="size">
+        <th mat-header-cell *matHeaderCellDef>容納人數</th>
+        <td mat-cell *matCellDef="let row">{{row.size}}</td>
+    </ng-container>
+<ng-container matColumnDef="projector">
+        <th mat-header-cell *matHeaderCellDef>投影機</th>
+        <td mat-cell *matCellDef="let row">{{row.projector}}</td>
+    </ng-container>
+    <ng-container matColumnDef="tv">
+        <th mat-header-cell *matHeaderCellDef>電視</th>
+        <td mat-cell *matCellDef="let row">{{row.tv}}</td>
+    </ng-container>
+ 
+    <ng-container matColumnDef="description" >
+        <td colspan="5" mat-header-cell *matHeaderCellDef>
+            <small>電視規格皆是60吋以上的數位電視，投影機解析度:1920*1080</small>
+        </td>
+        <td *matFooterCellDef colspan="5">座位總數(可視訊同步):{{getTotalSize()}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displaySequence"></tr>
+    <tr class="desc" mat-header-row *matHeaderRowDef="['description']" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displaySequence" (click)="RowClick(row)"></tr>
+    <tr class="desc" mat-footer-row *matFooterRowDef="['description']" ></tr>
+</table>

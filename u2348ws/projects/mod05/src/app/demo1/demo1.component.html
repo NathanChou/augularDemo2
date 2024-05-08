@@ -1,0 +1,26 @@
+<style>
+    .full-width {
+        width: 100%;
+    }
+
+    mat-form-field {
+        margin: 8px;
+    }
+
+    .inArray {
+        margin: 1px;
+    }
+
+    [matSuffix] {
+        margin-right: 20px;
+    }
+</style>
+
+<div>
+    <label>UserName</label>
+    <input type="text" [formControl]="userNameFC">
+</div>
+<button (click)="Change()">變更 userName </button>
+<button (click)="onSubmit()">Sumbit</button>
+
+{{ userNameFC.value }}

@@ -1,0 +1,26 @@
+<p>使用 mat-hint 、 matPrefix 、 matSuffix </p>
+
+<mat-form-field style="font-size:xx-large" floatLabel="always" >
+    <mat-label>價格</mat-label>
+    <input matInput type="number" placeholder="0" style="text-align:right" required min="1" max="100"
+    [(ngModel)]="price" #mPrice="ngModel"> 
+    <!-- required min="1" max="100"  [(ngModel)]="price" #mPrice="ngModel" -->
+    <span matPrefix>$</span>
+    <span matSuffix>萬元</span>
+    <mat-hint align="start">起標喊價</mat-hint>
+    <mat-hint align="end">萬元起跳</mat-hint>
+    <mat-error>
+        Error message
+    </mat-error>
+    <mat-error *ngIf="mPrice.invalid">
+        <ng-container *ngIf="mPrice.errors?.['required']">
+            必須填寫
+        </ng-container>
+        <ng-container *ngIf="mPrice.errors?.['min']">
+            不能小於 1
+        </ng-container>
+        <ng-container *ngIf="mPrice.errors?.['max']">
+            不能大於 100
+        </ng-container>
+    </mat-error>
+</mat-form-field>
