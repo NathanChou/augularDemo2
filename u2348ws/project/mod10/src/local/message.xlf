@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2509263906735978415" datatype="html">
+        <source>首頁</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/mod10/src/app/app.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5347108477546124691" datatype="html">
+        <source>管理頁面</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/mod10/src/app/app.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5561403394202701471" datatype="html">
+        <source>會員中心</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/mod10/src/app/app.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2857748458657946403" datatype="html">
+        <source>是否驗證?<x id="PH" equiv-text="data"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/mod10/src/app/auth/login/login.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

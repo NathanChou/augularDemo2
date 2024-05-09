@@ -1,0 +1,29 @@
+<div class="container">
+    <form method="POST" (ngSubmit)="onLogin()" >
+        <div class="row">
+            <div class='col'>請登入帳號密碼</div>
+        </div>
+        <div class="row">
+            <div class='col'>帳號:</div>
+            <div class='col'>
+                <input type="text" name="userName" class="form-control" 
+                 [(ngModel)]="userName" /></div>
+        </div>
+        <div class="row">
+            <div class='col'>密碼:</div>
+            <div class='col'>
+                <input type="password"
+                   name="password" class="form-control" 
+                [(ngModel)]="password" /></div>
+        </div>
+        <div class="row">
+            <div class='col'>
+                <button type="submit">
+                登入</button>
+            </div>
+        </div>
+    </form>
+    <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+
+    <!-- <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button> -->
+</div>

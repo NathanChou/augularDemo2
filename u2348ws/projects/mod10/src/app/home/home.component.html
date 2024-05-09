@@ -1,0 +1,20 @@
+home.component.html
+<div>
+    zh:{{today|date:'full':'':'zh'}}</div>
+<div>
+    fr:{{today|date:'full':'':'fr'}}</div>
+<div>
+    de:{{today|date:'full':'':'de'}}</div>
+
+<div>
+    amount (TWD):{{amount | currency:"TWD":'symbol':'4.2-4':'zh'}}</div>
+    <div>
+    amount (EUR): {{amount | currency:"EUR":'symbol':'4.2-4':'fr'}}</div>
+    <div>
+    amount (USD): {{amount | currency:"USD":'symbol':'4.2-4':'en-US'}}</div>
+    <div>
+    price (TWD): {{price | currency:"TWD":'symbol':'4.2-4':'zh'}}</div>
+    <div>
+    price (EUR): {{price | currency:"EUR":'symbol':'4.2-4':'fr'}}</div>
+    <div>
+    price (USD): {{price | currency:"USD":'symbol':'4.2-4':'en-US'}}</div>
