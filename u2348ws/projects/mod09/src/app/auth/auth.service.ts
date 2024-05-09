@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs';
@@ -12,12 +13,28 @@ export class AuthService {
   public userName: string | any;
   loginType: string = "Normal";
 
-  constructor() { 
+  constructor(private socialAuthService: SocialAuthService) { 
     this.IsAuthenticate = localStorage.getItem('IsAuthenticate') ? true : false;
-    this.userName = localStorage.getItem('UserName');
+    this.userName = this.IsAuthenticate ? localStorage.getItem('UserName') : "";
+
+    this.socialAuthService.authState.subscribe((user) => {
+      this.IsAuthenticate = (user != null);
+
+      if (this.IsAuthenticate) {
+        this.loginType = "gLogin";
+        this.userName = this.IsAuthenticate ? user.firstName : "";
+        this.Role = "Users";
+        this.saveState();
+      }
+    })
   }
 
   logout(): void {
+
+    if (this.loginType === "gLogin") {
+      this.socialAuthService.signOut();
+    }
+    
     this.IsAuthenticate = false;
     localStorage.removeItem('IsAuthenticate');
     localStorage.removeItem('Role');

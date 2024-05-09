@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { UserNameComponent } from './auth/user-name/user-name.component';
 import { FormsModule } from '@angular/forms';
+import { GoogleSigninButtonModule, SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,22 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule
   ],
-  providers: [],
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('643301899084-pb4q5e3cf19tkhua8l593qltiq773e6o.apps.googleusercontent.com')
+        }
+      ]
+    }
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
